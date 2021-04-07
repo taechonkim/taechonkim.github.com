@@ -9,13 +9,13 @@
 
   
 
-  <title>[자바스크립트] 진수변환</title>
+  <title>[자바스크립트] 문자열 뒤집기</title>
 
   
   <meta name="author" content="Taechonkim">
   
 
-  <meta name="description" content="코딩테스트에서 종종 볼 수 있는 진수 변환은 자바스크립트 내장 메소드를 사용하여 간단하게 해결할 수 있다. 10진법 -&amp;gt; N진법 변환 const number = 100; number.toString(2); // 2진법으로 변환 number.toString(8); // 8진법으로 변환 number.toString(16); // 16진법으로 변환 N진법 -&amp;gt; 10진법 변환 const number_2 = 1100100, number_8 = 144, number_16 = 64; Number.parseInt(number_2,...">
+  <meta name="description" content="자바스크립트 내장 메소드를 사용하여 문자열을 거꾸로 뒤집어볼까? let str = &quot;태촌이는 공부중&quot;; str = str.split(&quot;&quot;); // split 메소드의 인수로 전달한 구분자를 기준으로 구분한 배열을 반환한다. str = str.reverse(); // 배열 내장 메소드인 reverse 를 사용하여 거꾸로 뒤집는다. str = str.join(&quot;&quot;); // join 메소드의 인수로 전달한 구분자로 구분된 문자열을 반환한다. console.log(str);...">
 
   
 
@@ -72,8 +72,8 @@
 
   
   <meta property="og:site_name" content="8시의 복서">
-  <meta property="og:title" content="[자바스크립트] 진수변환">
-  <meta property="og:description" content="코딩테스트에서 종종 볼 수 있는 진수 변환은 자바스크립트 내장 메소드를 사용하여 간단하게 해결할 수 있다. 10진법 -&amp;gt; N진법 변환 const number = 100; number.toString(2); // 2진법으로 변환 number.toString(8); // 8진법으로 변환 number.toString(16); // 16진법으로 변환 N진법 -&amp;gt; 10진법 변환 const number_2 = 1100100, number_8 = 144, number_16 = 64; Number.parseInt(number_2,...">
+  <meta property="og:title" content="[자바스크립트] 문자열 뒤집기">
+  <meta property="og:description" content="자바스크립트 내장 메소드를 사용하여 문자열을 거꾸로 뒤집어볼까? let str = &quot;태촌이는 공부중&quot;; str = str.split(&quot;&quot;); // split 메소드의 인수로 전달한 구분자를 기준으로 구분한 배열을 반환한다. str = str.reverse(); // 배열 내장 메소드인 reverse 를 사용하여 거꾸로 뒤집는다. str = str.join(&quot;&quot;); // join 메소드의 인수로 전달한 구분자로 구분된 문자열을 반환한다. console.log(str);...">
 
   
   <meta property="og:image" content="http://localhost:4000/assets/img/profile.jpeg">
@@ -83,8 +83,8 @@
   <meta property="og:type" content="article">
   <meta property="og:article:author" content="Taechonkim">
   <meta property="og:article:published_time" content="2021-04-07T00:00:00-04:00">
-  <meta property="og:url" content="http://localhost:4000/2021-04-07-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">
-  <link rel="canonical" href="http://localhost:4000/2021-04-07-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/">
+  <meta property="og:url" content="http://localhost:4000/2021-04-07-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-2/">
+  <link rel="canonical" href="http://localhost:4000/2021-04-07-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-2/">
   
 
   
@@ -93,8 +93,8 @@
   <meta name="twitter:site" content="@">
   <meta name="twitter:creator" content="@">
 
-  <meta property="twitter:title" content="[자바스크립트] 진수변환">
-  <meta property="twitter:description" content="코딩테스트에서 종종 볼 수 있는 진수 변환은 자바스크립트 내장 메소드를 사용하여 간단하게 해결할 수 있다. 10진법 -&amp;gt; N진법 변환 const number = 100; number.toString(2); // 2진법으로 변환 number.toString(8); // 8진법으로 변환 number.toString(16); // 16진법으로 변환 N진법 -&amp;gt; 10진법 변환 const number_2 = 1100100, number_8 = 144, number_16 = 64; Number.parseInt(number_2,...">
+  <meta property="twitter:title" content="[자바스크립트] 문자열 뒤집기">
+  <meta property="twitter:description" content="자바스크립트 내장 메소드를 사용하여 문자열을 거꾸로 뒤집어볼까? let str = &quot;태촌이는 공부중&quot;; str = str.split(&quot;&quot;); // split 메소드의 인수로 전달한 구분자를 기준으로 구분한 배열을 반환한다. str = str.reverse(); // 배열 내장 메소드인 reverse 를 사용하여 거꾸로 뒤집는다. str = str.join(&quot;&quot;); // join 메소드의 인수로 전달한 구분자로 구분된 문자열을 반환한다. console.log(str);...">
 
   
   <meta name="twitter:image" content="http://localhost:4000/assets/img/profile.jpeg">
@@ -153,7 +153,7 @@
     <div class="row">
       <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
         <div class="post-heading">
-          <h1>[자바스크립트] 진수변환</h1>
+          <h1>[자바스크립트] 문자열 뒤집기</h1>
           
 
           
@@ -181,31 +181,16 @@
       
 
       <article role="main" class="blog-post">
-        <p>코딩테스트에서 종종 볼 수 있는 진수 변환은 자바스크립트 내장 메소드를 사용하여 간단하게 해결할 수 있다.</p>
+        <p>자바스크립트 내장 메소드를 사용하여 문자열을 거꾸로 뒤집어볼까?</p>
 
-<h3 id="10진법---n진법-변환">10진법 -&gt; N진법 변환</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">str</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">태촌이는 공부중</span><span class="dl">"</span><span class="p">;</span>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">number</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="nx">str</span> <span class="o">=</span> <span class="nx">str</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="dl">""</span><span class="p">);</span> <span class="c1">// split 메소드의 인수로 전달한 구분자를 기준으로 구분한 배열을 반환한다.</span>
+<span class="nx">str</span> <span class="o">=</span> <span class="nx">str</span><span class="p">.</span><span class="nx">reverse</span><span class="p">();</span> <span class="c1">// 배열 내장 메소드인 reverse 를 사용하여 거꾸로 뒤집는다.</span>
+<span class="nx">str</span> <span class="o">=</span> <span class="nx">str</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="dl">""</span><span class="p">);</span> <span class="c1">// join 메소드의 인수로 전달한 구분자로 구분된 문자열을 반환한다.</span>
 
-<span class="nx">number</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span> <span class="c1">// 2진법으로 변환</span>
-<span class="nx">number</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span> <span class="c1">// 8진법으로 변환</span>
-<span class="nx">number</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="mi">16</span><span class="p">);</span> <span class="c1">// 16진법으로 변환</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">);</span> <span class="c1">// "중부공 는이촌태"</span>
 </code></pre></div></div>
-
-<h3 id="n진법---10진법-변환">N진법 -&gt; 10진법 변환</h3>
-
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">number_2</span> <span class="o">=</span> <span class="mi">1100100</span><span class="p">,</span>
-  <span class="nx">number_8</span> <span class="o">=</span> <span class="mi">144</span><span class="p">,</span>
-  <span class="nx">number_16</span> <span class="o">=</span> <span class="mi">64</span><span class="p">;</span>
-
-<span class="nb">Number</span><span class="p">.</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">number_2</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span> <span class="c1">// 2진법 -&gt; 10진법 변환</span>
-<span class="nb">Number</span><span class="p">.</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">number_8</span><span class="p">,</span> <span class="mi">8</span><span class="p">);</span> <span class="c1">// 8진법 -&gt; 10진법 변환</span>
-<span class="nb">Number</span><span class="p">.</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">number_16</span><span class="p">,</span> <span class="mi">16</span><span class="p">);</span> <span class="c1">// 16진법 -&gt; 10진법 변환</span>
-</code></pre></div></div>
-
-<h3 id="관련문제">관련문제</h3>
-
-<p class="box-note"><a href="https://programmers.co.kr/learn/courses/30/lessons/68935">3진법 뒤집기</a></p>
 
       </article>
 
@@ -217,25 +202,15 @@
           
             <a href="/tags#javascript">javascript</a>
           
-            <a href="/tags#10진수 변환">10진수 변환</a>
+            <a href="/tags#문자열 뒤집기">문자열 뒤집기</a>
           
-            <a href="/tags#2진수 변환">2진수 변환</a>
+            <a href="/tags#배열 문자열 변환">배열 문자열 변환</a>
           
-            <a href="/tags#8진수 변환">8진수 변환</a>
-          
-            <a href="/tags#16진수 변환">16진수 변환</a>
+            <a href="/tags#Array to String">Array to String</a>
           
             <a href="/tags#프로그래머스">프로그래머스</a>
           
-            <a href="/tags#3진법">3진법</a>
-          
-            <a href="/tags#10진법">10진법</a>
-          
-            <a href="/tags#2진법">2진법</a>
-          
             <a href="/tags#자바스크립트 코딩테스트">자바스크립트 코딩테스트</a>
-          
-            <a href="/tags#3진법 뒤집기">3진법 뒤집기</a>
           
         </div>
       
@@ -252,7 +227,7 @@
   <span class="sr-only">Share: </span>
 
   
-    <a href="https://twitter.com/intent/tweet?text=%5B%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%5D+%EC%A7%84%EC%88%98%EB%B3%80%ED%99%98&url=http%3A%2F%2Flocalhost%3A4000%2F2021-04-07-%25EC%259E%2590%25EB%25B0%2594%25EC%258A%25A4%25ED%2581%25AC%25EB%25A6%25BD%25ED%258A%25B8%2F"
+    <a href="https://twitter.com/intent/tweet?text=%5B%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%5D+%EB%AC%B8%EC%9E%90%EC%97%B4+%EB%92%A4%EC%A7%91%EA%B8%B0&url=http%3A%2F%2Flocalhost%3A4000%2F2021-04-07-%25EC%259E%2590%25EB%25B0%2594%25EC%258A%25A4%25ED%2581%25AC%25EB%25A6%25BD%25ED%258A%25B8-2%2F"
       class="btn btn-social-icon btn-twitter" title="Share on Twitter">
       <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
       <span class="sr-only">Twitter</span>
@@ -260,7 +235,7 @@
   
 
   
-    <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2021-04-07-%25EC%259E%2590%25EB%25B0%2594%25EC%258A%25A4%25ED%2581%25AC%25EB%25A6%25BD%25ED%258A%25B8%2F"
+    <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2021-04-07-%25EC%259E%2590%25EB%25B0%2594%25EC%258A%25A4%25ED%2581%25AC%25EB%25A6%25BD%25ED%258A%25B8-2%2F"
       class="btn btn-social-icon btn-facebook" title="Share on Facebook">
       <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
       <span class="sr-only">Facebook</span>
@@ -268,7 +243,7 @@
   
 
   
-    <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2021-04-07-%25EC%259E%2590%25EB%25B0%2594%25EC%258A%25A4%25ED%2581%25AC%25EB%25A6%25BD%25ED%258A%25B8%2F"
+    <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2021-04-07-%25EC%259E%2590%25EB%25B0%2594%25EC%258A%25A4%25ED%2581%25AC%25EB%25A6%25BD%25ED%258A%25B8-2%2F"
       class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
       <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
       <span class="sr-only">LinkedIn</span>
@@ -285,10 +260,10 @@
 
       <ul class="pagination blog-pager">
         
-        <li class="page-item previous">
-          <a class="page-link" href="/2021-04-07-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-2/" data-toggle="tooltip" data-placement="top" title="[자바스크립트] 문자열 뒤집기">&larr; Previous Post</a>
-        </li>
         
+        <li class="page-item next">
+          <a class="page-link" href="/2021-04-07-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/" data-toggle="tooltip" data-placement="top" title="[자바스크립트] 진수변환">Next Post &rarr;</a>
+        </li>
         
       </ul>
       
