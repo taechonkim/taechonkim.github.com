@@ -18,30 +18,28 @@ const getInitStatus = (function () {
 }());
 
 const PvOpts = (function () {
-  function hasContent(selector) {
-    let content = $(selector).attr("content");
-    return (typeof content !== "undefined" && content !== false);
-  }
-
   return {
+    isEnabled() {
+      return "true" === $("meta[name=pv-cache-enabled]").attr("content");
+    },
     getProxyEndpoint() {
       return $("meta[name=pv-proxy-endpoint]").attr("content");
     },
     getLocalData() {
-      return $("meta[name=pv-cache-path]").attr("content");
-    },
-    hasProxyEndpoint() {
-      return hasContent("meta[name=pv-proxy-endpoint]");
-    },
-    hasLocalData() {
-      return hasContent("meta[name=pv-cache-path]");
+      return $("meta[name=pv-cache-data]").attr("content");
     }
   }
 }());
 
-const PvStorage = (function () {
+const PvCache = (function () {
   const KEY_PV = "pv";
   const KEY_CREATION = "pv_created_date";
+  const KEY_PV_SRC = "pv_source";
+
+  const Source = {
+    ORIGIN: "origin",
+    PROXY: "proxy"
+  };
 
   function get(key) {
     return localStorage.getItem(key);
@@ -52,43 +50,56 @@ const PvStorage = (function () {
   }
 
   return {
-    hasCache() {
-      return (localStorage.getItem(KEY_PV) !== null);
-    },
-    getCache() {
+    getData() {
       // get data from browser cache
       return JSON.parse(localStorage.getItem(KEY_PV));
     },
-    saveCache(pv) {
+    saveOriginCache(pv) {
       set(KEY_PV, pv);
+      set(KEY_PV_SRC, Source.ORIGIN);
       set(KEY_CREATION, new Date().toJSON());
     },
+    saveProxyCache(pv) {
+      set(KEY_PV, pv);
+      set(KEY_PV_SRC, Source.PROXY);
+      set(KEY_CREATION, new Date().toJSON());
+    },
+    isFromOrigin() {
+      return get(KEY_PV_SRC) === Source.ORIGIN;
+    },
+    isFromProxy() {
+      return get(KEY_PV_SRC) === Source.PROXY;
+    },
     isExpired() {
-      let date = new Date(get(KEY_CREATION));
-      date.setHours(date.getHours() + 1); // per hour
-      return Date.now() >= date.getTime();
+      if (PvCache.isFromOrigin()) {
+        let date = new Date(get(KEY_CREATION));
+        date.setDate(date.getDate() + 1); /* update origin records every day */
+        return Date.now() >= date.getTime();
+
+      } else if (PvCache.isFromProxy()) {
+        let date = new Date(get(KEY_CREATION));
+        date.setHours(date.getHours() + 1); /* update proxy records per hour */
+        return Date.now() >= date.getTime();
+      }
+      return false;
     },
     getAllPageviews() {
-      return PvStorage.getCache().totalsForAllResults["ga:pageviews"];
+      return PvCache.getData().totalsForAllResults["ga:pageviews"];
     },
     newerThan(pv) {
-      return PvStorage.getAllPageviews() > pv.totalsForAllResults["ga:pageviews"];
+      return PvCache.getAllPageviews() > pv.totalsForAllResults["ga:pageviews"];
     },
     inspectKeys() {
-      for(let i = 0; i < localStorage.length; i++){
-        const key = localStorage.key(i);
-        switch (key) {
-          case KEY_PV:
-          case KEY_CREATION:
-            break;
-          default:
-            localStorage.clear();
-            return;
-        }
+      if (localStorage.getItem(KEY_PV) === null
+        || localStorage.getItem(KEY_PV_SRC) === null
+        || localStorage.getItem(KEY_CREATION) === null) {
+        localStorage.clear();
       }
     }
   };
-}()); /* PvStorage */
+
+}()); /* PvCache */
+
 
 function countUp(min, max, destId) {
   if (min < max) {
@@ -100,6 +111,7 @@ function countUp(min, max, destId) {
     }
   }
 }
+
 
 function countPV(path, rows) {
   let count = 0;
@@ -117,6 +129,7 @@ function countPV(path, rows) {
   return count;
 }
 
+
 function tacklePV(rows, path, elem, hasInit) {
   let count = countPV(path, rows);
   count = (count === 0 ? 1 : count);
@@ -130,6 +143,7 @@ function tacklePV(rows, path, elem, hasInit) {
     }
   }
 }
+
 
 function displayPageviews(data) {
   if (typeof data === "undefined") {
@@ -151,38 +165,37 @@ function displayPageviews(data) {
   }
 }
 
+
 function fetchProxyPageviews() {
-  if (PvOpts.hasProxyEndpoint()) {
-    $.ajax({
-      type: "GET",
-      url: PvOpts.getProxyEndpoint(),
-      dataType: "jsonp",
-      jsonpCallback: "displayPageviews",
-      success: (data, textStatus, jqXHR) => {
-        PvStorage.saveCache(JSON.stringify(data));
-      },
-      error: (jqXHR, textStatus, errorThrown) => {
-        console.log("Failed to load pageviews from proxy server: " + errorThrown);
-      }
-    });
-  }
+  $.ajax({
+    type: "GET",
+    url: PvOpts.getProxyEndpoint(),
+    dataType: "jsonp",
+    jsonpCallback: "displayPageviews",
+    success: (data, textStatus, jqXHR) => {
+      PvCache.saveProxyCache(JSON.stringify(data));
+    },
+    error: (jqXHR, textStatus, errorThrown) => {
+      console.log("Failed to load pageviews from proxy server: " + errorThrown);
+    }
+  });
 }
 
-function loadPageviews(hasCache = false) {
-  if (PvOpts.hasLocalData()) {
+
+function fetchPageviews(fetchOrigin = true, filterOrigin = false) {
+  if (PvOpts.isEnabled() && fetchOrigin) {
     fetch(PvOpts.getLocalData())
       .then((response) => response.json())
       .then((data) => {
-        // The cache from the proxy will sometimes be more recent than the local one
-        if (hasCache && PvStorage.newerThan(data)) {
-          return;
+        if (filterOrigin) {
+          if (PvCache.newerThan(data)) {
+            return;
+          }
         }
         displayPageviews(data);
-        PvStorage.saveCache(JSON.stringify(data));
+        PvCache.saveOriginCache(JSON.stringify(data));
       })
-      .then(() => {
-        fetchProxyPageviews();
-      });
+      .then(() => fetchProxyPageviews());
 
   } else {
     fetchProxyPageviews();
@@ -190,20 +203,30 @@ function loadPageviews(hasCache = false) {
 
 }
 
+
 $(function() {
-  if ($(".pageviews").length <= 0) {
-    return;
-  }
+  if ($(".pageviews").length > 0) {
+    PvCache.inspectKeys();
+    let cache = PvCache.getData();
 
-  PvStorage.inspectKeys();
+    if (cache) {
+      displayPageviews(cache);
 
-  if (PvStorage.hasCache()) {
-    displayPageviews(PvStorage.getCache());
-    if (!PvStorage.isExpired()) {
-      return;
+      if (PvCache.isExpired()) {
+        fetchPageviews(true, PvCache.isFromProxy());
+
+      } else {
+
+        if (PvCache.isFromOrigin()) {
+          fetchPageviews(false);
+        }
+
+      }
+
+    } else {
+      fetchPageviews();
     }
-  }
 
-  loadPageviews(PvStorage.hasCache());
+  }
 
 });
