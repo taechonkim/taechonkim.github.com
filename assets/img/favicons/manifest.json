@@ -1,0 +1,31 @@
+---
+layout: compress
+#
+# A part of the Favicons
+---
+
+{% assign icon_url = "/assets/img/favicons" | relative_url %}
+
+{
+  "name": "{{ site.title }}",
+  "short_name": "{{ site.title }}",
+  "description": "{{ site.description }}",
+  "icons": [
+    {
+      "src": "{{ icon_url }}/favicon.png",
+      "sizes": "36x36",
+      "type": "image/png",
+      "density": "0.75"
+    },
+    {
+      "src": "{{ icon_url }}/favicon.png",
+      "sizes": "48x48",
+      "type": "image/png",
+      "density": "1.0"
+    },
+  ],
+    "start_url": "{{ '/index.html' | relative_url }}",
+    "display": "fullscreen",
+    "theme_color": "#2a1e6b",
+    "background_color": "white"
+}

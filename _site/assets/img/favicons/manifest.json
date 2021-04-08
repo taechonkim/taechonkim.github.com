@@ -1,0 +1,26 @@
+
+
+{
+  "name": "8시의 복서",
+  "short_name": "8시의 복서",
+  "description": "태촌이는 공부중",
+  "icons": [
+    {
+      "src": "/taechonkim/assets/img/favicons/favicon.png",
+      "sizes": "36x36",
+      "type": "image/png",
+      "density": "0.75"
+    },
+    {
+      "src": "/taechonkim/assets/img/favicons/favicon.png",
+      "sizes": "48x48",
+      "type": "image/png",
+      "density": "1.0"
+    },
+  ],
+    "start_url": "/taechonkim/index.html",
+    "display": "fullscreen",
+    "theme_color": "#2a1e6b",
+    "background_color": "white"
+}
+
