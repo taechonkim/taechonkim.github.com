@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="io">
+
+<head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link href="https://fonts.googleapis.com/css?family=Merriweather:300|Raleway:400,700" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/style.css">
+<title>[자바스크립트] 진수변환</title>
+<!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>[자바스크립트] 진수변환 | 8시의 복서</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="[자바스크립트] 진수변환" />
+<meta name="author" content="taechonkim" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="코딩테스트에서 종종 볼 수 있는 진수 변환은 자바스크립트 내장 메소드를 사용하여 간단하게 해결할 수 있다." />
+<meta property="og:description" content="코딩테스트에서 종종 볼 수 있는 진수 변환은 자바스크립트 내장 메소드를 사용하여 간단하게 해결할 수 있다." />
+<meta property="og:site_name" content="8시의 복서" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-04-07T14:10:00+09:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="[자바스크립트] 진수변환" />
+<script type="application/ld+json">
+{"description":"코딩테스트에서 종종 볼 수 있는 진수 변환은 자바스크립트 내장 메소드를 사용하여 간단하게 해결할 수 있다.","mainEntityOfPage":{"@type":"WebPage","@id":"/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%A7%84%EC%88%98%20%EB%B3%80%ED%99%98/2%EC%A7%84%EC%88%98%20%EB%B3%80%ED%99%98/8%EC%A7%84%EC%88%98%20%EB%B3%80%ED%99%98/16%EC%A7%84%EC%88%98%20%EB%B3%80%ED%99%98/10%EC%A7%84%EB%B2%95/2%EC%A7%84%EB%B2%95/3%EC%A7%84%EB%B2%95%20%EB%92%A4%EC%A7%91%EA%B8%B0/2021/04/07/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%A7%84%EC%88%98%EB%B3%80%ED%99%98.html"},"datePublished":"2021-04-07T14:10:00+09:00","url":"/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%A7%84%EC%88%98%20%EB%B3%80%ED%99%98/2%EC%A7%84%EC%88%98%20%EB%B3%80%ED%99%98/8%EC%A7%84%EC%88%98%20%EB%B3%80%ED%99%98/16%EC%A7%84%EC%88%98%20%EB%B3%80%ED%99%98/10%EC%A7%84%EB%B2%95/2%EC%A7%84%EB%B2%95/3%EC%A7%84%EB%B2%95%20%EB%92%A4%EC%A7%91%EA%B8%B0/2021/04/07/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%A7%84%EC%88%98%EB%B3%80%ED%99%98.html","author":{"@type":"Person","name":"taechonkim"},"headline":"[자바스크립트] 진수변환","@type":"BlogPosting","dateModified":"2021-04-07T14:10:00+09:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+<script type="text/javascript" src="/assets/js/darkmode.js"></script>
+
+</head><body>
+  <main class="container">
+    <section class="about">
+      <div class="about-header condensed">
+      <div class="about-title">
+      <a href="/">
+        
+        <img src="/assets/profile.png" alt="taechonkim" />
+        
+      </a>
+      <h2 id="title">
+        <a href="/">taechonkim</a>
+      </h2>
+      </div><p class="tagline">Frontend Developer.</p></div>
+      
+      <ul class="social about-footer condensed"><a href="https://github.com/taechonkim" target="_blank">
+          <li>
+            <i class="icon-github-circled"></i>
+          </li>
+        </a><a href="https://instagram.com/taechonkim_s2" target="_blank">
+          <li>
+            <i class="icon-instagram"></i>
+          </li>
+        </a><a href="mailto:mirijo02233092@gmail.com" target="_blank">
+          <li>
+            <i class="icon-mail-alt"></i>
+          </li>
+        </a></ul><p class="about-footer condensed">&copy;
+        2021</p><div class="about-footer condensed">
+        <p>Dark Mode
+          <i class="icon-moon"></i>
+          <label class="switch">
+            <input type="checkbox" class="dark-mode-toggle">
+            <span class="slider round" onclick="toggleDarkMode()"></span>
+          </label>
+        </p>
+      </div>
+    </section>
+    <section class="content">
+      <div class="post-container">
+  <a class="post-link" href="/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8/%EC%A7%84%EC%88%98%20%EB%B3%80%ED%99%98/2%EC%A7%84%EC%88%98%20%EB%B3%80%ED%99%98/8%EC%A7%84%EC%88%98%20%EB%B3%80%ED%99%98/16%EC%A7%84%EC%88%98%20%EB%B3%80%ED%99%98/10%EC%A7%84%EB%B2%95/2%EC%A7%84%EB%B2%95/3%EC%A7%84%EB%B2%95%20%EB%92%A4%EC%A7%91%EA%B8%B0/2021/04/07/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%A7%84%EC%88%98%EB%B3%80%ED%99%98.html">
+    <h2 class="post-title">[자바스크립트] 진수변환</h2>
+  </a>
+  <div class="post-meta">
+    <div class="post-date"><i class="icon-calendar"></i>Apr 7, 2021</div><ul class="post-categories"><li>자바스크립트</li><li>진수 변환</li><li>2진수 변환</li><li>8진수 변환</li><li>16진수 변환</li><li>10진법</li><li>2진법</li><li>3진법 뒤집기</li></ul></div>
+  <div class="post">
+    <p>코딩테스트에서 종종 볼 수 있는 진수 변환은 자바스크립트 내장 메소드를 사용하여 간단하게 해결할 수 있다.</p>
+
+<h2 id="10진법---n진법-변환">10진법 -&gt; N진법 변환</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">number</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+
+<span class="nx">number</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span> <span class="c1">// 2진법으로 변환</span>
+<span class="nx">number</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span> <span class="c1">// 8진법으로 변환</span>
+<span class="nx">number</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="mi">16</span><span class="p">);</span> <span class="c1">// 16진법으로 변환</span>
+</code></pre></div></div>
+
+<h2 id="n진법---10진법-변환">N진법 -&gt; 10진법 변환</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">number_2</span> <span class="o">=</span> <span class="mi">1100100</span><span class="p">,</span>
+  <span class="nx">number_8</span> <span class="o">=</span> <span class="mi">144</span><span class="p">,</span>
+  <span class="nx">number_16</span> <span class="o">=</span> <span class="mi">64</span><span class="p">;</span>
+
+<span class="nb">Number</span><span class="p">.</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">number_2</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span> <span class="c1">// 2진법 -&gt; 10진법 변환</span>
+<span class="nb">Number</span><span class="p">.</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">number_8</span><span class="p">,</span> <span class="mi">8</span><span class="p">);</span> <span class="c1">// 8진법 -&gt; 10진법 변환</span>
+<span class="nb">Number</span><span class="p">.</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">number_16</span><span class="p">,</span> <span class="mi">16</span><span class="p">);</span> <span class="c1">// 16진법 -&gt; 10진법 변환</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>관련문제</strong>: <a href="https://programmers.co.kr/learn/courses/30/lessons/68935">[프로그래머스] 3진법 뒤집기</a></p>
+</blockquote>
+
+  </div></div>
+
+    </section>
+    <footer class="condensed">
+      <ul class="social about-footer condensed"><a href="https://github.com/taechonkim" target="_blank">
+          <li>
+            <i class="icon-github-circled"></i>
+          </li>
+        </a><a href="https://instagram.com/taechonkim_s2" target="_blank">
+          <li>
+            <i class="icon-instagram"></i>
+          </li>
+        </a><a href="mailto:mirijo02233092@gmail.com" target="_blank">
+          <li>
+            <i class="icon-mail-alt"></i>
+          </li>
+        </a></ul><p class="about-footer condensed">&copy;
+        2021</p><div class="about-footer condensed">
+        <p>Dark Mode
+          <i class="icon-moon"></i>
+          <label class="switch">
+            <input type="checkbox" class="dark-mode-toggle">
+            <span class="slider round" onclick="toggleDarkMode()"></span>
+          </label>
+        </p>
+      </div>
+    </footer>
+  </main>
+  
+  <script type="text/javascript" src="/assets/js/darkmode.js"></script>
+  
+  <script src="/assets/js/simple-jekyll-search.min.js"></script>
+  <script src="/assets/js/search.js"></script>
+  
+</body>
+
+</html>

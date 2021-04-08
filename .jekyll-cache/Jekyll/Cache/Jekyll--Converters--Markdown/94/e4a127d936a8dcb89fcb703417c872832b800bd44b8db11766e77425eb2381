@@ -1,0 +1,15 @@
+I"�<p>자바스크립트 내장 메소드를 사용하여 문자열을 거꾸로 뒤집어볼까?</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">str</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">태촌이는 공부중</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="nx">str</span> <span class="o">=</span> <span class="nx">str</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="dl">""</span><span class="p">);</span> <span class="c1">// split 메소드의 인수로 전달한 구분자를 기준으로 구분한 배열을 반환한다.</span>
+<span class="nx">str</span> <span class="o">=</span> <span class="nx">str</span><span class="p">.</span><span class="nx">reverse</span><span class="p">();</span> <span class="c1">// 배열 내장 메소드인 reverse 를 사용하여 거꾸로 뒤집는다.</span>
+<span class="nx">str</span> <span class="o">=</span> <span class="nx">str</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="dl">""</span><span class="p">);</span> <span class="c1">// join 메소드의 인수로 전달한 구분자로 구분된 문자열을 반환한다.</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">str</span><span class="p">);</span> <span class="c1">// "중부공 는이촌태"</span>
+</code></pre></div></div>
+
+<h3 id="관련문제">관련문제</h3>
+
+<p class="box-note"><a href="https://programmers.co.kr/learn/courses/30/lessons/68935">3진법 뒤집기</a></p>
+:ET

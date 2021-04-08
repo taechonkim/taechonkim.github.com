@@ -1,0 +1,27 @@
+I"�
+<p>코딩테스트에서 종종 볼 수 있는 진수 변환은 자바스크립트 내장 메소드를 사용하여 간단하게 해결할 수 있다.</p>
+
+<h2 id="10진법---n진법-변환">10진법 -&gt; N진법 변환</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">number</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+
+<span class="nx">number</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span> <span class="c1">// 2진법으로 변환</span>
+<span class="nx">number</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="mi">8</span><span class="p">);</span> <span class="c1">// 8진법으로 변환</span>
+<span class="nx">number</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="mi">16</span><span class="p">);</span> <span class="c1">// 16진법으로 변환</span>
+</code></pre></div></div>
+
+<h2 id="n진법---10진법-변환">N진법 -&gt; 10진법 변환</h2>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">number_2</span> <span class="o">=</span> <span class="mi">1100100</span><span class="p">,</span>
+  <span class="nx">number_8</span> <span class="o">=</span> <span class="mi">144</span><span class="p">,</span>
+  <span class="nx">number_16</span> <span class="o">=</span> <span class="mi">64</span><span class="p">;</span>
+
+<span class="nb">Number</span><span class="p">.</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">number_2</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span> <span class="c1">// 2진법 -&gt; 10진법 변환</span>
+<span class="nb">Number</span><span class="p">.</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">number_8</span><span class="p">,</span> <span class="mi">8</span><span class="p">);</span> <span class="c1">// 8진법 -&gt; 10진법 변환</span>
+<span class="nb">Number</span><span class="p">.</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">number_16</span><span class="p">,</span> <span class="mi">16</span><span class="p">);</span> <span class="c1">// 16진법 -&gt; 10진법 변환</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>관련문제</strong>: <a href="https://programmers.co.kr/learn/courses/30/lessons/68935">[프로그래머스] 3진법 뒤집기</a></p>
+</blockquote>
+:ET
