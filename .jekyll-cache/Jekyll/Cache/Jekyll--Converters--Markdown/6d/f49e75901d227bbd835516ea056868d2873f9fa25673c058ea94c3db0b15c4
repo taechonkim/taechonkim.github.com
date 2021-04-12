@@ -1,0 +1,189 @@
+I"�n<p>2021.4.9 코딩테스트 문제풀이</p>
+
+<h2 id="신규-아이디-추천">신규 아이디 추천</h2>
+
+<p>[문제] <a href="https://programmers.co.kr/learn/courses/30/lessons/72410">신규 아이디 추천</a></p>
+
+<p>[풀이] 문제가 길지만 lv1 인만큼 어렵지는 않다. 친절하게 단계도 나눠주어서 하라는 대로 구현하면 되는 문제였다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">solution</span><span class="p">(</span><span class="nx">new_id</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">answer</span> <span class="o">=</span> <span class="dl">''</span><span class="p">;</span>
+
+    <span class="c1">// 1단계</span>
+    <span class="nx">answer</span> <span class="o">=</span> <span class="nx">new_id</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">();</span>
+
+    <span class="c1">// 2단계</span>
+    <span class="nx">answer</span> <span class="o">=</span> <span class="nx">answer</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/</span><span class="se">[^</span><span class="sr">a-z0-9-_.</span><span class="se">]</span><span class="sr">/g</span><span class="p">,</span> <span class="dl">""</span><span class="p">);</span>
+
+    <span class="c1">// 3단계</span>
+    <span class="nx">answer</span> <span class="o">=</span> <span class="nx">answer</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/</span><span class="se">[</span><span class="sr">.</span><span class="se">]{2,}</span><span class="sr">/g</span><span class="p">,</span> <span class="dl">"</span><span class="s2">.</span><span class="dl">"</span><span class="p">);</span>
+
+    <span class="c1">// 4단계</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">answer</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">.</span><span class="dl">"</span><span class="p">)</span> <span class="nx">answer</span> <span class="o">=</span> <span class="nx">answer</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">answer</span><span class="p">[</span><span class="nx">answer</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">.</span><span class="dl">"</span><span class="p">)</span> <span class="nx">answer</span> <span class="o">=</span> <span class="nx">answer</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">answer</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+
+    <span class="c1">// 5단계</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">answer</span> <span class="o">===</span> <span class="dl">""</span><span class="p">)</span> <span class="nx">answer</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">a</span><span class="dl">"</span><span class="p">;</span>
+
+    <span class="c1">// 6단계</span>
+    <span class="nx">answer</span> <span class="o">=</span> <span class="nx">answer</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">answer</span><span class="p">[</span><span class="nx">answer</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">.</span><span class="dl">"</span><span class="p">)</span> <span class="nx">answer</span> <span class="o">=</span> <span class="nx">answer</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">answer</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+
+    <span class="c1">// 7단계</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nx">answer</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">answer</span> <span class="o">+=</span> <span class="nx">answer</span><span class="p">[</span><span class="nx">answer</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="nx">answer</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="모의고사">모의고사</h2>
+
+<p>[문제] <a href="https://programmers.co.kr/learn/courses/30/lessons/42840">모의고사</a></p>
+
+<p>[풀이] 1~3번 수포자의 정답 갯수를 저장할 cnt 배열을 만들고, 1~3번 수포자의 답을 채점하기 위해 for 루프를 세 번 돌린다. 각 수포자의 답안은 주기가 있는데 1번의 경우 5, 2번은 8, 3번은 10이기 때문에 인덱스를 각 주기로 나눈 값을 기준으로 채점하면 된다. 그리고 cnt 배열의 최댓값을 구한 후 cnt 배열을 돌면서 배열의 요소와 최댓값이 같은 지 확인한 후 인덱스에 1을 더한 값을 answer 배열에 추가하면 오름차순으로 정렬된 값이 된다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">solution</span><span class="p">(</span><span class="nx">answers</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">answer</span> <span class="o">=</span> <span class="p">[],</span> <span class="nx">cnt</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="k">from</span><span class="p">({</span> <span class="na">length</span><span class="p">:</span> <span class="mi">3</span> <span class="p">},</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="mi">0</span><span class="p">);</span>
+
+    <span class="c1">// 1번 채점</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">answers</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">answers</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">===</span> <span class="p">(</span><span class="nx">i</span><span class="o">%</span><span class="mi">5</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="nx">cnt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 2번 채점</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">answers</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">switch</span> <span class="p">(</span><span class="nx">i</span> <span class="o">%</span> <span class="mi">8</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">case</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">answers</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="nx">cnt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">answers</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">===</span> <span class="mi">3</span><span class="p">)</span> <span class="nx">cnt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="mi">5</span><span class="p">:</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">answers</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">===</span> <span class="mi">4</span><span class="p">)</span> <span class="nx">cnt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="mi">7</span><span class="p">:</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">answers</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">===</span> <span class="mi">5</span><span class="p">)</span> <span class="nx">cnt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="nl">default</span><span class="p">:</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">answers</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">===</span> <span class="mi">2</span><span class="p">)</span> <span class="nx">cnt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 3번 채점</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">answers</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">switch</span> <span class="p">(</span><span class="nx">i</span> <span class="o">%</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">case</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">case</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">answers</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">===</span> <span class="mi">3</span><span class="p">)</span> <span class="nx">cnt</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">case</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">answers</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="nx">cnt</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="k">case</span> <span class="mi">5</span><span class="p">:</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">answers</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">===</span> <span class="mi">2</span><span class="p">)</span> <span class="nx">cnt</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="mi">6</span><span class="p">:</span>
+            <span class="k">case</span> <span class="mi">7</span><span class="p">:</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">answers</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">===</span> <span class="mi">4</span><span class="p">)</span> <span class="nx">cnt</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="nl">default</span><span class="p">:</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">answers</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">===</span> <span class="mi">5</span><span class="p">)</span> <span class="nx">cnt</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">const</span> <span class="nx">max</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(...</span><span class="nx">cnt</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">cnt</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">cnt</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">===</span> <span class="nx">max</span><span class="p">)</span> <span class="nx">answer</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">i</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="nx">answer</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="체육복">체육복</h2>
+
+<p>[문제] <a href="https://programmers.co.kr/learn/courses/30/lessons/42862">체육복</a></p>
+
+<p>[풀이] 입력으로 주어지는 lost는 체육복을 읽어버린 학생의 번호가 들어있는 배열, reserve는 여벌의 체육복이 있는 학생의 번호가 들어있는 배열이다. 문제를 잘 읽어보면 lost와 reserve에 교집합이 있을 수 있다. 이런 경우 그 학생은 체육복을 빌려줄 수 없기 때문에 제외해야 한다. lostArr, reserveArr은 lost와 reserve 배열의 교집합을 제외한 배열이다. 교집합을 제외한 후 lostArr 배열을 돌면서 앞, 뒷번호 학생에게 체육복을 빌릴 수 있는지(=reserveArr 배열에 lostArr[i]의 +1, -1값이 있는지) 확인한다. 만약 있다면 reserveArr 배열에서 제외한 후 다음 루프로 점프한다. 없다면, 전체 학생수로 초기화한 answer 값을 감소시킨다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">solution</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="nx">lost</span><span class="p">,</span> <span class="nx">reserve</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">answer</span> <span class="o">=</span> <span class="nx">n</span><span class="p">;</span>
+
+  <span class="kd">let</span> <span class="nx">lostArr</span> <span class="o">=</span> <span class="nx">lost</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">x</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="nx">reserve</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">x</span><span class="p">));</span>
+  <span class="kd">let</span> <span class="nx">reserveArr</span> <span class="o">=</span> <span class="nx">reserve</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">x</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="nx">lost</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">x</span><span class="p">));</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">lostArr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">reserveArr</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">lostArr</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="p">{</span>
+      <span class="nx">reserveArr</span> <span class="o">=</span> <span class="nx">reserveArr</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">x</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">!==</span> <span class="nx">lostArr</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+      <span class="k">continue</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">reserveArr</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">lostArr</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="p">{</span>
+      <span class="nx">reserveArr</span> <span class="o">=</span> <span class="nx">reserveArr</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">x</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">x</span> <span class="o">!==</span> <span class="nx">lostArr</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+      <span class="k">continue</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nx">answer</span><span class="o">--</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="nx">answer</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="k번째수">K번째수</h2>
+
+<p>[문제] <a href="https://programmers.co.kr/learn/courses/30/lessons/42748">K번째수</a></p>
+
+<p>[풀이] 쉬운 구현문제다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">solution</span><span class="p">(</span><span class="nx">array</span><span class="p">,</span> <span class="nx">commands</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">answer</span> <span class="o">=</span> <span class="p">[];</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">commands</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">temp</span> <span class="o">=</span> <span class="nx">array</span>
+      <span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">commands</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">commands</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+      <span class="p">.</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">a</span> <span class="o">-</span> <span class="nx">b</span><span class="p">);</span>
+    <span class="nx">answer</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">temp</span><span class="p">[</span><span class="nx">commands</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]);</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="nx">answer</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="2016년">2016년</h2>
+
+<p>[문제] <a href="https://programmers.co.kr/learn/courses/30/lessons/12901">2016년</a></p>
+
+<p>[풀이] 1월 1일이 금요일이니 요일을 나타내는 days 배열을 금요일부터 시작했다. 그리고 윤년이기 때문에 각 월의 일수를 나타내는 monthDays 배열의 2월은 29일로 초기화했다. 그리고 1월 1일을 기준으로 a월 b일까지 일수를 모두 더한 후(1월 1일은 제외하므로 1을 감소시켰다.) 7으로 나눈 나머지 인덱스의 days 배열 값을 반환했다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">solution</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">answer</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="kd">const</span> <span class="nx">days</span> <span class="o">=</span> <span class="p">[</span><span class="dl">"</span><span class="s2">FRI</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">SAT</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">SUN</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">MON</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">TUE</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">WED</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">THU</span><span class="dl">"</span><span class="p">];</span>
+  <span class="kd">const</span> <span class="nx">monthDays</span> <span class="o">=</span> <span class="p">[</span><span class="mi">31</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">];</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">a</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">answer</span> <span class="o">+=</span> <span class="nx">monthDays</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+  <span class="p">}</span>
+
+  <span class="nx">answer</span> <span class="o">+=</span> <span class="nx">b</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="nx">answer</span> <span class="o">%=</span> <span class="mi">7</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="nx">days</span><span class="p">[</span><span class="nx">answer</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>관련문제</strong>:
+<a href="https://programmers.co.kr/learn/courses/30/lessons/72410">신규 아이디 추천</a> <a href="https://programmers.co.kr/learn/courses/30/lessons/42840">모의고사</a> <a href="https://programmers.co.kr/learn/courses/30/lessons/42862">체육복</a> <a href="https://programmers.co.kr/learn/courses/30/lessons/42748">K번째수</a> <a href="https://programmers.co.kr/learn/courses/30/lessons/12901">2016년</a></p>
+</blockquote>
+:ET
